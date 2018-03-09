@@ -8,27 +8,16 @@ import pickle as pk
 addressbook = {}
 
 class Contact(object):
-    def __init__(self, first_name, last_name):
+    def __init__(self, first_name, last_name, email, phone, street_address, town, state, zipcode, country):
         self.first_name = first_name
         self.last_name = last_name
-        self.email = ""
-        self.phone = ""
-        self.street_address = ""
-        self.town = ""
-        self.state = ""
-        self.zipcode = ""
-
-    def add_email(self):
-        self.email = input("Enter email address: ")
-
-    def add_phone(self):
-        self.phone = input("Enter phone number: ")
-
-    def add_address(self):
-        self.street_address = input("Enter street address: ")
-        self.town = input("Enter city or town: ")
-        self.state = input("Enter state: ")
-        self.zipcode = input("Enter zip code: ")
+        self.email = email
+        self.phone = phone
+        self.street_address = street_address
+        self.town = town
+        self.state = state
+        self.zipcode = zipcode
+        self.country = country
 
 
 run = True
@@ -42,13 +31,17 @@ while run:
         firstname = input("First name: ")
         lastname = input("Last name: ")
         fullname = firstname + lastname
-        contact = Contact(firstname, lastname)
-        contact.add_address
-        contact.add_email
-        contact.add_phone
+        email = input("Enter email address: ")
+        phone = input("Enter phone number: ")
+        street_address = input("Enter street address: ")
+        town = input("Enter city or town: ")
+        state = input("Enter state: ")
+        zipcode = input("Enter zip code: ")
+        country = input("Enter country: ")
+        contact = Contact(firstname, lastname, email, phone, street_address, town, state, zipcode, country)
+        #d['mynewkey'] = 'mynewvalue'
         addressbook[fullname] = contact
-        print(addressbook)
-
+        
     elif answer == "S" or answer == 's':
         pass
 
@@ -63,8 +56,13 @@ while run:
 #Noon.add_email()
 #Noon.add_phone()
 print()
-print(contact.first_name, contact.last_name)
-print(fullname)
-print(addressbook)
-print("Email:", contact.email)
-print("State:", contact.state)
+#print(contact.first_name, contact.last_name)
+#print(fullname)
+#print(addressbook)
+#print("Email:", contact.email)
+#print("State:", contact.state)
+# Write to the file
+f = open("addressbook.txt", 'wb')
+# Dump the object to a file
+pk.dump(addressbook, f)
+f.close()
